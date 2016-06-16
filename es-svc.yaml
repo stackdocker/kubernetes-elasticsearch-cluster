@@ -6,11 +6,12 @@ metadata:
     component: elasticsearch
     role: client
 spec:
-  type: LoadBalancer
+  type: NodePort #LoadBalancer
   selector:
     component: elasticsearch
     role: client
   ports:
   - name: http
+    nodePort: 32124
     port: 9200
     protocol: TCP
