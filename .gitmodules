@@ -1,0 +1,6 @@
+[submodule "lib/docker-elasticsearch-kubernetes"]
+	path = lib/docker-elasticsearch-kubernetes
+	url = https://github.com/stackdocker/docker-elasticsearch-kubernetes
+[submodule "lib/docker-elasticsearch"]
+	path = lib/docker-elasticsearch
+	url = https://github.com/stackdocker/docker-elasticsearch
