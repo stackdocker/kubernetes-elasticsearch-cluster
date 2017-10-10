@@ -20,15 +20,13 @@ spec:
       containers:
       - name: es-client
         securityContext:
-          # privileged: true
+          privileged: true
           capabilities:
             add:
               - IPC_LOCK
         image: quay.io/pires/docker-elasticsearch-kubernetes:2.3.3
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
-        - name: KUBERNETES_CA_CERTIFICATE_FILE
-          value: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         - name: NAMESPACE
           valueFrom:
             fieldRef:
@@ -49,14 +47,9 @@ spec:
           name: transport
           protocol: TCP
         volumeMounts:
-        - mountPath: /elasticsearch/config
-          name: config
         - mountPath: /data
           name: storage
       volumes:
-      - hostPath:
-          path: "/data/src/github.com/pires/kubernetes-elasticsearch-cluster/config"
-        name: "config"
-      - emptyDir: {}
-          # medium: ""
-        name: "storage"
+          - emptyDir:
+              medium: ""
+            name: "storage"
